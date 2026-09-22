@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!--
+      ============================================================
+      SITE — LUCAS MOREIRA (maquiador profissional)
+      Arquivos: index.html (esta página) | css/styles.css | js/main.js
+      Fotos: assets/img/   Vídeos: assets/video/
+      ============================================================
+      DADOS PARA EDITAR (copie e busque no arquivo):
+      - WhatsApp link:  https://wa.me/5581898082458
+      - WhatsApp texto: (81) 8908-8245
+      - Instagram:      https://www.instagram.com/lucasmoreiramake/
+      - Usuário IG:     @lucasmoreiramake
+      - Cidade:         Recife / PE
+      ============================================================
+    -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- SEO: título da aba do navegador e buscadores -->
+    <title>Lucas Moreira | Maquiador Profissional em Recife</title>
+    <meta
+      name="description"
+      content="Lucas Moreira, maquiador profissional em Recife com mais de 10 anos de experiência, +100 clientes e trabalhos com famosas. Maquiagem para eventos, noivas e editorial. Agende pelo WhatsApp."
+    />
+    <meta
+      name="keywords"
+      content="maquiador profissional, maquiagem para eventos, maquiagem para noivas, maquiador Recife, Lucas Moreira, maquiagem editorial, beleza Recife PE, lucasmoreiramake"
+    />
+    <meta name="author" content="Lucas Moreira" />
+    <!-- Preview quando o link é compartilhado (WhatsApp, Instagram, etc.) -->
+    <meta property="og:title" content="Lucas Moreira | Maquiador Profissional" />
+    <meta
+      property="og:description"
+      content="Transformando beleza há mais de 10 anos. Portfólio, atendimentos em shoppings e agendamento direto no WhatsApp."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:image" content="assets/img/lucas-hero.jpeg" />
+    <!-- Fontes: serifada nos títulos (Cormorant) + sans no texto (Outfit) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <!--
+      Estilos adicionados para: capa dos vídeos ("clique e se surpreenda"),
+      formulário de cadastro e mapa do studio. Se preferir, mova este bloco
+      para dentro de css/styles.css — funciona igual.
+    -->
+    <style>
+      /* ---- Capa dos vídeos (substitui a foto do Lucas como poster) ---- */
+      .video-card__player { position: relative; overflow: hidden; }
+      .video-card__cover {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.85rem;
+        width: 100%;
+        border: 0;
+        margin: 0;
+        cursor: pointer;
+        color: #f6e9c9;
+        text-align: center;
+        padding: 1rem;
+        background:
+          radial-gradient(120% 140% at 20% 15%, rgba(202, 162, 74, 0.35), transparent 55%),
+          linear-gradient(155deg, #15100d 0%, #2c1e16 45%, #caa24a 130%);
+        transition: opacity 0.35s ease;
+      }
+      .video-card__cover:hover { filter: brightness(1.08); }
+      .video-card__playicon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(246, 233, 201, 0.14);
+        border: 1px solid rgba(246, 233, 201, 0.65);
+        font-size: 1.3rem;
+        line-height: 1;
+        padding-left: 4px;
+      }
+      .video-card__covertext {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.2rem;
+        letter-spacing: 0.02em;
+      }
+      .video-card__coversub {
+        font-family: "Outfit", sans-serif;
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(246, 233, 201, 0.75);
+      }
+      .video-card__player.is-playing .video-card__cover {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* ---- Formulário de cadastro + localização do studio ---- */
+      .contact__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(1.75rem, 4vw, 3.5rem);
+        align-items: start;
+      }
+      .form { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; max-width: 460px; }
+      .form__field { display: flex; flex-direction: column; gap: 0.4rem; font-family: "Outfit", sans-serif; font-size: 0.85rem; color: #f6e9c9; }
+      .form__field input,
+      .form__field select {
+        font-family: "Outfit", sans-serif;
+        font-size: 0.95rem;
+        padding: 0.85rem 1rem;
+        border-radius: 10px;
+        border: 1px solid rgba(202, 162, 74, 0.45);
+        background: rgba(255, 255, 255, 0.04);
+        color: #f6e9c9;
+        outline: none;
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+      .form__field input::placeholder { color: rgba(246, 233, 201, 0.45); }
+      .form__field input:focus,
+      .form__field select:focus { border-color: #caa24a; background: rgba(202, 162, 74, 0.08); }
+      .form__field select option { color: #15100d; }
+      .form button[type="submit"] { align-self: flex-start; margin-top: 0.25rem; border: none; cursor: pointer; }
+      .form__hint { font-size: 0.78rem; color: rgba(246, 233, 201, 0.6); margin: 0; }
+      .form__status { font-size: 0.85rem; min-height: 1.1em; margin: 0; }
+      .form__status[data-state="ok"] { color: #caa24a; }
+      .form__status[data-state="error"] { color: #e08b8b; }
+
+      .contact__location { display: flex; flex-direction: column; gap: 1rem; }
+      .location__address { font-style: normal; font-family: "Cormorant Garamond", serif; font-size: 1.15rem; line-height: 1.6; color: #f6e9c9; margin: 0; }
+      .location__map { position: relative; width: 100%; padding-top: 68%; border-radius: 16px; overflow: hidden; border: 1px solid rgba(202, 162, 74, 0.35); }
+      .location__map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(0.15) contrast(1.05); }
+
+      @media (max-width: 860px) {
+        .contact__grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#inicio">Pular para o conteúdo</a>
+
+    <!-- ========== MENU SUPERIOR (âncoras para cada seção) ========== -->
+    <header class="nav" id="topo">
+      <div class="nav__inner">
+        <a class="nav__logo" href="#inicio">Lucas <em>Moreira</em></a>
+        <!-- Botão hambúrguer: só aparece no celular (ver CSS @media) -->
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="nav__menu" id="menu" aria-label="Seções">
+          <a href="#sobre">Sobre</a>
+          <a href="#galeria">Galeria</a>
+          <a href="#videos">Vídeos</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#depoimentos">Prova social</a>
+          <a href="#instagram">Instagram</a>
+          <a href="#contato">Contato</a>
+          <!-- CTA WhatsApp no menu — troque o href se o número mudar -->
+          <a class="btn btn--gold btn--sm" href="https://wa.me/5581898082458?text=Ola%2C%20Lucas!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20maquiagem." target="_blank" rel="noopener noreferrer">Fale no WhatsApp</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ========== 1. HERO (topo) — foto de destaque + chamada ========== -->
+      <section class="hero" id="inicio">
+        <div class="hero__glow" aria-hidden="true"></div>
+        <div class="container hero__grid">
+          <div class="hero__copy reveal">
+            <p class="eyebrow">Maquiador profissional · Recife / PE</p>
+            <h1>Lucas Moreira</h1>
+            <p class="hero__tagline">Transformando beleza há mais de 10 anos</p>
+            <p class="hero__lead">
+              Glamour, precisão e presença. Maquiagem autoral para eventos, noivas e produções —
+              com atendimento em shoppings, lojas parceiras e sessões exclusivas.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--gold" href="https://wa.me/5581898082458?text=Ola%2C%20Lucas!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20maquiagem." target="_blank" rel="noopener noreferrer">
+                Fale no WhatsApp
+              </a>
+              <a class="btn btn--ghost" href="#galeria">Ver portfólio</a>
+            </div>
+            <!-- Números de autoridade — edite os <strong> se os dados mudarem -->
+            <ul class="hero__stats">
+              <li><strong>+10</strong><span>anos de experiência</span></li>
+              <li><strong>+100</strong><span>clientes atendidas</span></li>
+              <li><strong>VIP</strong><span>trabalhos com famosas</span></li>
+            </ul>
+          </div>
+          <figure class="hero__portrait reveal">
+            <div class="hero__frame">
+              <!-- Troque o src para outra foto em assets/img/ -->
+              <img
+                src="assets/img/lucas-hero.jpeg"
+                alt="Lucas Moreira, maquiador profissional, sorrindo com um pincel de maquiagem"
+                width="720"
+                height="960"
+              />
+            </div>
+            <figcaption>Beleza com identidade · Recife</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ========== 2. SOBRE — mini biografia ========== -->
+      <section class="about" id="sobre">
+        <div class="container about__grid">
+          <figure class="about__photo reveal">
+            <img
+              src="assets/img/lucas-portrait.jpeg"
+              alt="Retrato de Lucas Moreira segurando pincéis de maquiagem"
+              width="720"
+              height="960"
+            />
+          </figure>
+          <div class="about__text reveal">
+            <p class="eyebrow">Sobre o profissional</p>
+            <h2>Autoridade, glow e confiança em cada produção</h2>
+            <p>
+              Lucas Moreira é maquiador profissional com <strong>mais de 10 anos</strong> dedicados à
+              arte de revelar a melhor versão de cada cliente. Já atendeu
+              <strong>mais de 100 pessoas</strong> — de noivas a produções sociais — e construiu um
+              diferencial raro: <strong>trabalhos com famosas e celebridades</strong>, prova de
+              excelência sob pressão e olhar de câmera.
+            </p>
+            <p>
+              Os atendimentos acontecem em <strong>shoppings e lojas parceiras</strong>, além de
+              sessões próprias e personalizadas. O resultado é sempre o mesmo: maquiagem sofisticada,
+              duradoura e feita para fotografar — e para viver o momento.
+            </p>
+            <div class="about__pills">
+              <span>Shoppings</span>
+              <span>Lojas parceiras</span>
+              <span>Atendimento próprio</span>
+              <span>Celebridades</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 3. GALERIA — clique na foto abre o zoom (lightbox) ========== -->
+      <!-- Para adicionar foto: copie um <button class="masonry__item"> e troque src + data-lightbox -->
+      <section class="gallery" id="galeria">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="eyebrow">Portfólio</p>
+            <h2>Galeria de fotos</h2>
+            <p>Retratos e identidade visual do trabalho — clique para ampliar.</p>
+          </header>
+          <div class="masonry">
+            <button class="masonry__item reveal" type="button" data-lightbox="assets/img/lucas-hero.jpeg" data-caption="Lucas Moreira — glow e precisão">
+              <img src="assets/img/lucas-hero.jpeg" alt="Lucas Moreira aplicando maquiagem com pincel" />
+              <span>Glow</span>
+            </button>
+            <button class="masonry__item masonry__item--tall reveal" type="button" data-lightbox="assets/img/lucas-portrait.jpeg" data-caption="Retrato de estúdio">
+              <img src="assets/img/lucas-portrait.jpeg" alt="Lucas Moreira em retrato de estúdio com pincéis" />
+              <span>Estúdio</span>
+            </button>
+            <button class="masonry__item reveal" type="button" data-lightbox="assets/img/lucas-gallery.jpeg" data-caption="Presença e atitude">
+              <img src="assets/img/lucas-gallery.jpeg" alt="Lucas Moreira posando com pincéis de maquiagem" />
+              <span>Presença</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 4. VÍDEOS — player nativo (play/pause no próprio vídeo) ========== -->
+      <!-- Para adicionar vídeo: copie um <article class="video-card"> e troque o src do <source> -->
+      <section class="videos" id="videos">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="eyebrow">Em movimento</p>
+            <h2>Vídeos</h2>
+            <p>Destaques, transformações e bastidores do atendimento.</p>
+          </header>
+          <div class="videos__grid">
+            <article class="video-card reveal">
+              <div class="video-card__player">
+                <video
+                  controls
+                  playsinline
+                  preload="metadata"
+                  aria-label="Vídeo destaque do trabalho de Lucas Moreira"
+                >
+                  <source src="assets/video/destaque.mp4" type="video/mp4" />
+                </video>
+                <!-- Capa clicável: some assim que o vídeo começa a tocar (ver script no fim da página) -->
+                <button class="video-card__cover" type="button" aria-label="Reproduzir vídeo destaque">
+                  <span class="video-card__playicon" aria-hidden="true">▶</span>
+                  <span class="video-card__covertext">Clique e se surpreenda</span>
+                  <span class="video-card__coversub">Ver destaque</span>
+                </button>
+              </div>
+              <h3>Destaque</h3>
+              <p>Produção em movimento — o glow, o traço e o resultado final.</p>
+            </article>
+            <article class="video-card reveal">
+              <div class="video-card__player">
+                <video
+                  controls
+                  playsinline
+                  preload="metadata"
+                  aria-label="Vídeo de bastidores de Lucas Moreira"
+                >
+                  <source src="assets/video/bastidores.mp4" type="video/mp4" />
+                </video>
+                <!-- Capa clicável: some assim que o vídeo começa a tocar (ver script no fim da página) -->
+                <button class="video-card__cover" type="button" aria-label="Reproduzir vídeo de bastidores">
+                  <span class="video-card__playicon" aria-hidden="true">▶</span>
+                  <span class="video-card__covertext">Clique e se surpreenda</span>
+                  <span class="video-card__coversub">Ver bastidores</span>
+                </button>
+              </div>
+              <h3>Bastidores</h3>
+              <p>O processo por trás da transformação: ritmo, técnica e presença.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 5. SERVIÇOS / DIFERENCIAIS — um card por tipo de atendimento ========== -->
+      <section class="services" id="servicos">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="eyebrow">O que eu faço</p>
+            <h2>Diferenciais e serviços</h2>
+            <p>Atendimento pensado para o evento, a câmera e a sua rotina.</p>
+          </header>
+          <div class="cards">
+            <article class="card reveal">
+              <div class="card__icon" aria-hidden="true">✦</div>
+              <h3>Eventos</h3>
+              <p>Maquiagem social de alto impacto para festas, formaturas e noites especiais.</p>
+            </article>
+            <article class="card reveal">
+              <div class="card__icon" aria-hidden="true">◇</div>
+              <h3>Noivas</h3>
+              <p>Produção completa para o grande dia: pele luminosa, duração e fotos inesquecíveis.</p>
+            </article>
+            <article class="card reveal">
+              <div class="card__icon" aria-hidden="true">✧</div>
+              <h3>Editorial</h3>
+              <p>Olhar de moda para ensaios, campanhas e conteúdos que pedem atitude e precisão.</p>
+            </article>
+            <article class="card reveal">
+              <div class="card__icon" aria-hidden="true">◎</div>
+              <h3>Shopping &amp; loja</h3>
+              <p>Atendimento em shoppings e lojas parceiras — praticidade sem abrir mão do glamour.</p>
+            </article>
+            <article class="card reveal">
+              <div class="card__icon" aria-hidden="true">❋</div>
+              <h3>Personalizado</h3>
+              <p>Sessão exclusiva, alinhada ao seu estilo, ao look e à ocasião.</p>
+            </article>
+            <article class="card reveal">
+              <div class="card__icon" aria-hidden="true">★</div>
+              <h3>Celebridades</h3>
+              <p>Experiência com famosas: protocolo VIP, discrição e resultado à prova de palco.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 6. DEPOIMENTOS — troque as frases pelas reais das clientes ========== -->
+      <section class="social-proof" id="depoimentos">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="eyebrow">Prova social</p>
+            <h2>Quem vive a transformação, recomenda</h2>
+            <p>
+              Mais de uma década, mais de 100 clientes e trabalhos com famosas.
+              Depoimentos que traduzem o que o glow entrega na prática.
+            </p>
+          </header>
+          <div class="quotes">
+            <blockquote class="quote reveal">
+              <div class="stars" aria-label="5 estrelas">★★★★★</div>
+              <p>“Pele impecável, brilho no ponto certo. Saí me sentindo eu — só que em versão gala.”</p>
+              <footer>— Cliente · Evento social</footer>
+            </blockquote>
+            <blockquote class="quote reveal">
+              <div class="stars" aria-label="5 estrelas">★★★★★</div>
+              <p>“Profissionalismo de quem já atendeu palco e câmera. Noiva tranquila, make eterna.”</p>
+              <footer>— Cliente · Noiva</footer>
+            </blockquote>
+            <blockquote class="quote reveal">
+              <div class="stars" aria-label="5 estrelas">★★★★★</div>
+              <p>“Atendimento no shopping, resultado de studio. Pontual, atencioso e certeiro.”</p>
+              <footer>— Cliente · Loja parceira</footer>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 7. INSTAGRAM — link ativo para @lucasmoreiramake ========== -->
+      <section class="instagram" id="instagram">
+        <div class="container instagram__panel reveal">
+          <div class="instagram__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.4">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4.2" />
+              <circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none" />
+            </svg>
+          </div>
+          <p class="eyebrow">Redes</p>
+          <h2>Siga no Instagram</h2>
+          <p class="instagram__handle">@lucasmoreiramake</p>
+          <p>
+            Bastidores, produções e o glow do dia a dia. Toque no botão e abra o perfil.
+          </p>
+          <!-- Se o usuário do IG mudar, atualize o href e o texto @ acima -->
+          <a
+            class="btn btn--gold"
+            href="https://www.instagram.com/lucasmoreiramake/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Seguir @lucasmoreiramake
+          </a>
+        </div>
+      </section>
+
+      <!-- ========== 8. CADASTRO + LOCALIZAÇÃO DO STUDIO ==========
+           (antes havia uma seção "Contato" aqui que repetia os mesmos dados
+           do rodapé — foi trocada por este formulário + mapa) -->
+      <section class="contact" id="contato">
+        <div class="container contact__grid">
+          <div class="contact__form reveal">
+            <p class="eyebrow">Agenda aberta</p>
+            <h2>Garanta seu horário</h2>
+            <p>
+              Preencha seus dados e o serviço desejado. Ao enviar, seus dados são organizados
+              automaticamente em uma mensagem de WhatsApp para confirmar o agendamento com Lucas.
+            </p>
+            <!-- Formulário sem backend: ao enviar, monta a mensagem e abre o WhatsApp (ver script no fim da página) -->
+            <form class="form" id="form-cadastro" novalidate>
+              <label class="form__field">
+                <span>Nome</span>
+                <input type="text" name="nome" placeholder="Seu nome completo" autocomplete="name" required />
+              </label>
+              <label class="form__field">
+                <span>E-mail</span>
+                <input type="email" name="email" placeholder="seu@email.com" autocomplete="email" required />
+              </label>
+              <label class="form__field">
+                <span>Serviço desejado</span>
+                <select name="servico" required>
+                  <option value="" disabled selected>Selecione um serviço</option>
+                  <option value="Eventos">Eventos</option>
+                  <option value="Noivas">Noivas</option>
+                  <option value="Editorial">Editorial</option>
+                  <option value="Shopping e loja">Shopping &amp; loja</option>
+                  <option value="Atendimento personalizado">Atendimento personalizado</option>
+                  <option value="Celebridades">Celebridades</option>
+                </select>
+              </label>
+              <button class="btn btn--gold btn--xl" type="submit">Enviar cadastro</button>
+              <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+              <p class="form__hint">
+                Prefere falar direto?
+                <a href="https://wa.me/5581898082458?text=Ola%2C%20Lucas!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20maquiagem." target="_blank" rel="noopener noreferrer">Fale no WhatsApp</a>.
+              </p>
+            </form>
+          </div>
+
+          <div class="contact__location reveal">
+            <p class="eyebrow">Studio</p>
+            <h2>Onde fica o studio</h2>
+            <address class="location__address">
+              Rua Britânia, 175 — Jardim Japão<br />
+              São Paulo · SP · CEP 02142-010
+            </address>
+            <div class="location__map">
+              <iframe
+                title="Localização do studio — Rua Britânia, 175, Jardim Japão, São Paulo"
+                src="https://www.google.com/maps?q=Rua+Brit%C3%A2nia,+175,+Jardim+Jap%C3%A3o,+S%C3%A3o+Paulo+-+SP&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <a
+              class="btn btn--ghost"
+              href="https://www.google.com/maps/search/?api=1&query=Rua+Brit%C3%A2nia%2C+175%2C+Jardim+Jap%C3%A3o%2C+S%C3%A3o+Paulo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Abrir no Google Maps
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========== RODAPÉ — marca, mapa do site, contato e redes ========== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <!-- Coluna 1: identidade -->
+          <div class="footer__brand">
+            <a class="nav__logo" href="#inicio">Lucas <em>Moreira</em></a>
+            <p>Maquiador profissional em Recife. Glamour, precisão e presença em cada produção.</p>
+            <div class="footer__pills">
+              <a class="footer__pill footer__pill--wa" href="https://wa.me/5581898082458?text=Ola%2C%20Lucas!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20maquiagem." target="_blank" rel="noopener noreferrer">WhatsApp</a>
+              <a class="footer__pill" href="https://www.instagram.com/lucasmoreiramake/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </div>
+          </div>
+
+          <!-- Coluna 2: âncoras da página -->
+          <nav class="footer__col" aria-label="Mapa do site">
+            <h3>Navegar</h3>
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#galeria">Galeria</a>
+            <a href="#videos">Vídeos</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#depoimentos">Depoimentos</a>
+            <a href="#instagram">Instagram</a>
+            <a href="#contato">Contato</a>
+          </nav>
+
+          <!-- Coluna 3: atalho dos serviços -->
+          <nav class="footer__col" aria-label="Serviços">
+            <h3>Serviços</h3>
+            <a href="#servicos">Eventos</a>
+            <a href="#servicos">Noivas</a>
+            <a href="#servicos">Editorial</a>
+            <a href="#servicos">Shopping &amp; loja</a>
+            <a href="#servicos">Atendimento personalizado</a>
+          </nav>
+
+          <!-- Coluna 4: dados de contato -->
+          <div class="footer__col">
+            <h3>Atendimento</h3>
+            <a href="https://wa.me/5581898082458?text=Ola%2C%20Lucas!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20maquiagem." target="_blank" rel="noopener noreferrer">(81) 8908-8245</a>
+            <a href="https://www.instagram.com/lucasmoreiramake/" target="_blank" rel="noopener noreferrer">@lucasmoreiramake</a>
+            <p>Shoppings, lojas parceiras e sessões próprias · Recife / PE</p>
+          </div>
+        </div>
+
+        <div class="footer__bar">
+          <p>© <span id="year"></span> Lucas Moreira · Todos os direitos reservados</p>
+          <a class="footer__top" href="#inicio">Voltar ao topo</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Botão flutuante: visível em todas as seções (canto inferior direito) -->
+    <a
+      class="float-wa"
+      href="https://wa.me/5581898082458?text=Ola%2C%20Lucas!%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20maquiagem."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Fale agora no WhatsApp"
+    >
+      <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M19.11 17.47c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.14-.42-2.17-1.34-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.41.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.29s.98 2.66 1.12 2.84c.14.18 1.93 2.95 4.68 4.14 1.74.75 2.22.82 3.02.69.46-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"
+        />
+        <path
+          fill="currentColor"
+          d="M16.02 4.8A11.17 11.17 0 0 0 4.88 15.95c0 1.97.52 3.89 1.5 5.58L4.8 27.2l5.82-1.53a11.16 11.16 0 0 0 5.4 1.38h.01c6.16 0 11.17-5.01 11.17-11.17 0-2.98-1.16-5.79-3.27-7.9A11.13 11.13 0 0 0 16.02 4.8zm0 20.37h-.01a9.28 9.28 0 0 1-4.73-1.3l-.34-.2-3.45.91.92-3.36-.22-.35a9.29 9.29 0 0 1-1.42-4.94c0-5.13 4.18-9.31 9.32-9.31 2.49 0 4.83.97 6.59 2.73a9.27 9.27 0 0 1 2.73 6.58c0 5.14-4.18 9.24-9.39 9.24z"
+        />
+      </svg>
+      <span>Fale agora</span>
+    </a>
+
+    <!-- Lightbox da galeria: preenchido pelo JS ao clicar em uma foto -->
+    <div class="lightbox" id="lightbox" hidden>
+      <button class="lightbox__close" type="button" aria-label="Fechar">×</button>
+      <img alt="" />
+      <p class="lightbox__caption"></p>
+    </div>
+
+    <script src="js/main.js"></script>
+    <!--
+      Script extra para os dois recursos novos desta página:
+      1) Capa "Clique e se surpreenda" nos vídeos (some ao dar play)
+      2) Formulário de cadastro sem backend: monta a mensagem e abre o WhatsApp
+      Se preferir, mova este bloco para dentro de js/main.js — funciona igual.
+    -->
+    <script>
+      (function () {
+        // ---- 1) Capa dos vídeos ----
+        document.querySelectorAll(".video-card__player").forEach(function (wrap) {
+          var video = wrap.querySelector("video");
+          var cover = wrap.querySelector(".video-card__cover");
+          if (!video || !cover) return;
+          cover.addEventListener("click", function () {
+            video.play();
+          });
+          video.addEventListener("play", function () {
+            wrap.classList.add("is-playing");
+          });
+          video.addEventListener("pause", function () {
+            wrap.classList.remove("is-playing");
+          });
+        });
+
+        // ---- 2) Formulário de cadastro -> WhatsApp ----
+        var form = document.getElementById("form-cadastro");
+        var status = document.getElementById("form-status");
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var nome = form.nome.value.trim();
+            var email = form.email.value.trim();
+            var servico = form.servico.value;
+
+            if (!nome || !email || !servico) {
+              status.textContent = "Preencha nome, e-mail e o serviço desejado.";
+              status.dataset.state = "error";
+              return;
+            }
+
+            var texto =
+              "Olá, Lucas! Quero agendar uma maquiagem.%0A" +
+              "Nome: " + encodeURIComponent(nome) + "%0A" +
+              "E-mail: " + encodeURIComponent(email) + "%0A" +
+              "Serviço desejado: " + encodeURIComponent(servico);
+
+            status.textContent = "Cadastro pronto! Abrindo o WhatsApp para confirmar...";
+            status.dataset.state = "ok";
+
+            window.open("https://wa.me/5581898082458?text=" + texto, "_blank", "noopener,noreferrer");
+            form.reset();
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
